@@ -1,0 +1,6 @@
+{
+  "name": "Feedback Form",
+  "description": "A refined, elegant client feedback and review form for Melissa Fourie Makeup, styled in a warm linen and cream palette with star ratings and feedback input.",
+  "requestFramePermissions": ["display-capture"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
