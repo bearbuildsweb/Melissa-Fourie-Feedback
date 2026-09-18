@@ -3,6 +3,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { FeedbackCard } from './components/FeedbackCard';
 import { SubmissionSuccess } from './components/SubmissionSuccess';
 import { UserProfile, FeedbackSubmission } from './types';
+import { submitToGoogleSheet } from './services/sheetService';
 import profilePhoto from './ASSETS/profile.jpg';
 
 const DEFAULT_USER: UserProfile = {
@@ -59,11 +60,16 @@ export default function App() {
     }, 3000);
   };
 
-  // Submit feedback with smooth transition
-  const handleSubmitFeedback = (submission: FeedbackSubmission) => {
+  // Submit feedback with smooth transition and Google Sheet recording
+  const handleSubmitFeedback = async (submission: FeedbackSubmission) => {
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      // Send submission data to Google Sheet web app
+      await submitToGoogleSheet(submission);
+    } catch (err) {
+      console.error('Submission recording error:', err);
+    } finally {
       setIsSubmitting(false);
       setActiveSubmission(submission);
 
@@ -71,7 +77,7 @@ export default function App() {
       setHistory(updatedHistory);
       localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(updatedHistory));
       showToast('Thank you for your review');
-    }, 600);
+    }
   };
 
   const handleResetForm = () => {

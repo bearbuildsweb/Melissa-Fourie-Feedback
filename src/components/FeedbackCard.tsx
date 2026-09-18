@@ -7,7 +7,6 @@ import {
   ChevronRight,
   ChevronLeft,
   Heart,
-  Sparkles,
 } from 'lucide-react';
 import {
   FeedbackStep,
@@ -352,12 +351,8 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
                 aria-label="Feedback message"
               />
 
-              {/* Character counter & guidance */}
-              <div className="flex items-center justify-between pt-2 border-t border-[#EFE7DE] text-[11px] text-[#8C8075] select-none">
-                <span className="flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-[#B88746]" />
-                  Your review helps refine every makeup artistry appointment
-                </span>
+              {/* Character counter */}
+              <div className="flex items-center justify-end pt-2 text-[11px] text-[#8C8075] select-none">
                 <span>{message.length} / 1000</span>
               </div>
             </div>
